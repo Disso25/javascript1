@@ -1,0 +1,61 @@
+function randomSleep() {
+  return (4 + (Math.floor(6 * Math.random() )));
+}
+function getSleepHours(day){
+  switch(day) {
+    case 'monday':
+      return randomSleep();
+      break;
+    case 'tuesday':
+      return randomSleep();
+      break;
+    case 'wednesday':
+      return randomSleep();
+      break;
+    case 'thursday':
+      return randomSleep();
+      break;
+    case 'friday':
+      return randomSleep();
+      break;
+    case 'saturday':
+      return randomSleep();
+      break;
+    case 'sunday':
+      return randomSleep();
+      break;
+  }    //end switch
+} //end function
+function getActualSleepHours (){
+  var sleepHours = 0;
+  sleepHours = sleepHours + getSleepHours('monday');
+  sleepHours = sleepHours + getSleepHours('tuesday');
+  sleepHours = sleepHours + getSleepHours('wednesday');
+  sleepHours = sleepHours + getSleepHours('thursday');
+  sleepHours = sleepHours + getSleepHours('friday');
+  sleepHours = sleepHours + getSleepHours('saturday');
+  sleepHours = sleepHours + getSleepHours('sunday');
+  return sleepHours;  
+} //end function
+function getIdealSleepHours() {
+  var idealHours = 7;
+  return 7 * idealHours;
+} //end function
+function calculateSleepDebt() {
+  var actualSleepHours = getActualSleepHours();
+  var idealSleepHours = getIdealSleepHours();
+  var sleepDifference = idealSleepHours - actualSleepHours;
+	if (actualSleepHours === idealSleepHours){
+    console.log('Ideal: '+ idealSleepHours + ' vs Actual: ' + actualSleepHours);
+    return 'You got the perfect amount of sleep';
+  }  else if (actualSleepHours > idealSleepHours) {
+    console.log('Ideal: ' + idealSleepHours + ' vs Actual: ' + actualSleepHours);    
+    return 'You got ' + Math.abs(sleepDifference) + ' hours more sleep than needed.';
+    } else if (actualSleepHours < idealSleepHours) { 
+			console.log('Ideal: ' + idealSleepHours + ' vs Actual: ' + actualSleepHours);
+      return 'You should get ' + Math.abs(sleepDifference) + ' hours more of sleep';                                   
+    } else {
+        return 'There was a problem with the Sleep Debt calculation'
+  }
+} //end function
+console.log(calculateSleepDebt() ) ;
